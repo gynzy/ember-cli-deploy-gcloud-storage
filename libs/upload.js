@@ -47,8 +47,8 @@ module.exports = function uploadToGCS(plugin, config) {
 		var basePath = path.join(config.fileBase, filePath);
 		var isGzipped = config.gzippedFilePaths.indexOf(filePath) !== -1;
 		promises.push(new Promise(function (resolve, reject) {
-			// throttling to 20 reqeusts per second
-			setTimeout(upload.bind(null, basePath, filePath, isGzipped, resolve, reject), i * 50);
+			// throttling to 10 reqeusts per second
+			setTimeout(upload.bind(null, basePath, filePath, isGzipped, resolve, reject), i * 100);
 		}));
 	}
 	return Promise.all(promises);
